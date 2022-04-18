@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":automergePatch"
+  ],
+  "automergeType": "pr",
+  "labels": [
+    "renovate"
+  ],
+  "separateMinorPatch": true,
+  "rebaseWhen": "behind-base-branch"
+}
