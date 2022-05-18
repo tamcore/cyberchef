@@ -1,11 +1,9 @@
-FROM node:17.9.0-alpine3.14 as build
+FROM node:18.2.0 as build
 
 # renovate: datasource=github-releases depName=gchq/CyberChef
 ARG CYBERCHEF_VERSION="v9.37.3"
 
 RUN chown -R node:node /srv
-
-RUN apk add git
 
 USER node
 
