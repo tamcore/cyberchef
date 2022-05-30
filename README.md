@@ -8,7 +8,7 @@ This assumes, that your ingress class is called *nginx* and your cert-manager Cl
 
 Additionally, you should change mydomain.tld to something you own.
 ```
-helm repo add cyberchef https://tamcore.github.io/cyberchef/charts
+helm repo add cyberchef https://tamcore.github.io/cyberchef
 
 cat <<EOF | helm install cyberchef cyberchef/cyberchef --values -
 ingress:
