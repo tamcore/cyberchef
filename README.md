@@ -4,7 +4,7 @@ This is nothing special. Just a minimal container image for [Cyberchef](gchq/cyb
 
 ## Usage
 ### Install in Kubernetes
-This assumes, that your ingress class is called *nginx* and your cert-manager ClusterIssuer for SSL certificates is called *letsencrypt-prod*. 
+This assumes, that your ingress class is called *nginx* and your cert-manager ClusterIssuer for SSL certificates is called *letsencrypt-prod*.
 
 Additionally, you should change mydomain.tld to something you own.
 ```
