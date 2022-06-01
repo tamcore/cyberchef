@@ -1,0 +1,34 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    if: contains( github.event.head_commit.message, 'Update dependency gchq/CyberChef' )
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set Tag Output
+        id: set-tag
+        run: |
+          sed -nE 's/ARG CYBERCHEF_VERSION="(.*)"/::set-output name=tag_name::\1/p' Dockerfile
+
+      - name: Create tag
+        run: |
+          git tag "${{ steps.set-tag.outputs.tag_name }}"
+          git push --tags
+
+      # - name: Create release
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     tag: ${{ steps.set-tag.outputs.tag_name }}
+      #     token: ${{ secrets.GITHUB_TOKEN }}
