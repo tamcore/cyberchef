@@ -1,0 +1,40 @@
+name: Release Charts
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    if: contains( github.event.head_commit.message, 'Update dependency gchq/CyberChef' )
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Extract version
+        id: extra_version
+        run: |
+          sed -nE 's/ARG CYBERCHEF_VERSION="(.*)"/::set-output name=version::\1/p' Dockerfile
+
+      - name: Update Chart.yaml
+        run: |
+          sed -Ei \
+            -e 's/^(version\:) .*/\1 '${{ steps.set-tag.outputs.tag_name }}'/g' \
+            -e 's/^(appVersion\:) .*/\1 "'${{ steps.set-tag.outputs.tag_name }}'"/g' \
+            charts/cyberchef/Chart.yaml
+
+      - name: Commit changes
+        run: |
+          git commit -am 'update chart to ${{ steps.set-tag.outputs.tag_name }}'
+          git push
