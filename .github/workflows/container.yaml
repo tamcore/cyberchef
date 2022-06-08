@@ -53,4 +53,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           cache: true
-          cache-repository: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/cache
+          cache-repository: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-cache
+          push-retry: 5
