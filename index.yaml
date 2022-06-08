@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   cyberchef:
   - apiVersion: v2
+    appVersion: v9.38.9
+    created: "2022-06-08T18:31:27.958918857Z"
+    description: A Helm chart for Kubernetes
+    digest: 3877e09848e7ddcc0d3fee796b780a9e5d75266da5eb429872fcb59801f425dc
+    name: cyberchef
+    type: application
+    urls:
+    - https://github.com/TamCore/cyberchef/releases/download/cyberchef-v9.38.9/cyberchef-v9.38.9.tgz
+    version: v9.38.9
+  - apiVersion: v2
     appVersion: v9.38.8
     created: "2022-06-08T17:33:18.456814631Z"
     description: A Helm chart for Kubernetes
@@ -31,4 +41,4 @@ entries:
     urls:
     - https://github.com/TamCore/cyberchef/releases/download/cyberchef-v9.38.6/cyberchef-v9.38.6.tgz
     version: v9.38.6
-generated: "2022-06-08T17:33:18.456827331Z"
+generated: "2022-06-08T18:31:27.958940957Z"
