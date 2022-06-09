@@ -2,8 +2,9 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base",
-    ":automergePatch"
+    ":disableDependencyDashboard"
   ],
+  "stabilityDays": 0,
   "automergeType": "pr",
   "labels": [
     "renovate"
@@ -24,6 +25,12 @@
       "matchStrings": [
         "#\\srenovate:\\sdatasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s(ENV|ARG) .*?_VERSION=\"?(?<currentValue>.*?)\"?\\n"
       ]
+    }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["gchq/cyberchef"],
+      "automerge": true
     }
   ]
 }
