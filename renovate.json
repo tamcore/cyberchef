@@ -29,9 +29,10 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["gchq/cyberchef"],
+      "matchPackageNames": ["gchq/CyberChef"],
       "automerge": true,
       "ignoreTests": true
     }
-  ]
+  ],
+  configMigration: true
 }
