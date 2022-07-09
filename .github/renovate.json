@@ -31,6 +31,10 @@
     {
       "matchPackageNames": ["gchq/CyberChef"],
       "ignoreTests": true
+    },
+    {
+      "matchPackageNames": ["node"],
+      "allowedVersions": "<=17"
     }
   ]
 }
