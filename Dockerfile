@@ -1,4 +1,4 @@
-FROM node:18.2.0 as build
+FROM node:18.5.0 as build
 
 # renovate: datasource=github-releases depName=gchq/CyberChef
 ARG CYBERCHEF_VERSION="v9.46.0"
