@@ -1,0 +1,45 @@
+name: CI Build
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - 'renovate/*'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  ci-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get version from Dockerfile
+        run: |
+          sed -nE 's/ARG CYBERCHEF_VERSION="(.*)"/TAG=\1/p' Dockerfile >> $GITHUB_ENV
+
+      - name: Generate container metadata
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{raw}},value=${{ env.TAG }}
+
+      - name: Build image
+        uses: int128/kaniko-action@v1
+        with:
+          context: .
+          labels: ${{ steps.meta.outputs.labels }}
+          push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          cache: false
