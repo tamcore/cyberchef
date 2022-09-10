@@ -1,6 +1,6 @@
 # Container Image for Cyberchef
 
-This is nothing special. Just a minimal container image for [Cyberchef](gchq/cyberchef).
+This is nothing special. Just a minimal container image for [Cyberchef](https://github.com/gchq/CyberChef).
 
 ## Usage
 ### Install in Kubernetes
