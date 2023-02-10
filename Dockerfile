@@ -1,4 +1,4 @@
-FROM node:17.9.1 as build
+FROM --platform=$BUILDPLATFORM node:17.9.1 as build
 
 # renovate: datasource=github-releases depName=gchq/CyberChef
 ARG CYBERCHEF_VERSION="v10.5.2"
