@@ -17,7 +17,7 @@ ENV NODE_OPTIONS="--max-old-space-size=2048"
 
 RUN npx grunt prod
 
-FROM nginxinc/nginx-unprivileged:1.23-alpine
+FROM nginxinc/nginx-unprivileged:1.24-alpine
 
 COPY --from=build /srv/build/prod /usr/share/nginx/html
 
