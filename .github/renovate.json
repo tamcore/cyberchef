@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     ":disableDependencyDashboard"
   ],
   "automergeType": "branch",
@@ -13,14 +13,16 @@
   "regexManagers": [
     {
       "fileMatch": [
-        "^charts\/.+\/Chart.yaml$"
+        "^charts/.+/Chart.yaml$"
       ],
       "matchStrings": [
         "#\\s*renovate:\\sdatasource=(?<datasource>.*?)\\sdepName=(?<depName>.*?)(?: registryUrl=(?<registryUrl>.*?))?(?: versioning=(?<versioning>.*?))?\\n(?:app)?[Vv]ersion: \"?(?<currentValue>.*?)\"?\\n"
       ]
     },
     {
-      "fileMatch": ["Dockerfile$"],
+      "fileMatch": [
+        "Dockerfile$"
+      ],
       "matchStrings": [
         "#\\srenovate:\\sdatasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s(ENV|ARG) .*?_VERSION=\"?(?<currentValue>.*?)\"?\\n"
       ]
@@ -29,11 +31,15 @@
   "automerge": true,
   "packageRules": [
     {
-      "matchPackageNames": ["gchq/CyberChef"],
+      "matchPackageNames": [
+        "gchq/CyberChef"
+      ],
       "ignoreTests": true
     },
     {
-      "matchPackageNames": ["node"],
+      "matchPackageNames": [
+        "node"
+      ],
       "allowedVersions": "<=17"
     }
   ]
