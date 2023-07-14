@@ -1,7 +1,7 @@
 FROM node:17.9.1 as build
 
 # renovate: datasource=github-releases depName=gchq/CyberChef
-ARG CYBERCHEF_VERSION="v10.4.0"
+ARG CYBERCHEF_VERSION="v10.5.2"
 
 RUN chown -R node:node /srv
 
