@@ -10,8 +10,9 @@
   ],
   "separateMinorPatch": true,
   "rebaseWhen": "behind-base-branch",
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": [
         "^charts/.+/Chart.yaml$"
       ],
@@ -20,6 +21,7 @@
       ]
     },
     {
+      "customType": "regex",
       "fileMatch": [
         "Dockerfile$"
       ],
