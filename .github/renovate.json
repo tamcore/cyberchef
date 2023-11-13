@@ -34,7 +34,8 @@
   "packageRules": [
     {
       "matchPackageNames": [
-        "gchq/CyberChef"
+        "gchq/CyberChef",
+        "nginxinc/nginx-unprivileged"
       ],
       "ignoreTests": true
     },
