@@ -22,7 +22,7 @@ RUN \
         unzip cyberchef.zip -d build/prod; \
     fi
 
-FROM nginxinc/nginx-unprivileged:1.25.2-alpine-slim
+FROM nginxinc/nginx-unprivileged:1.25.3-alpine-slim
 
 COPY --from=build --chown=0:0 /app/build/prod /usr/share/nginx/html
 
