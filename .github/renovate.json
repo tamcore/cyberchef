@@ -13,8 +13,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        "^charts/.+/Chart.yaml$"
+      "managerFilePatterns": [
+        "/^charts/.+/Chart.yaml$/"
       ],
       "matchStrings": [
         "#\\s*renovate:\\sdatasource=(?<datasource>.*?)\\sdepName=(?<depName>.*?)(?: registryUrl=(?<registryUrl>.*?))?(?: versioning=(?<versioning>.*?))?\\n(?:app)?[Vv]ersion: \"?(?<currentValue>.*?)\"?\\n"
@@ -22,8 +22,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "Dockerfile$"
+      "managerFilePatterns": [
+        "/Dockerfile$/"
       ],
       "matchStrings": [
         "#\\srenovate:\\sdatasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s(ENV|ARG) .*?_VERSION=\"?(?<currentValue>.*?)\"?\\n"
