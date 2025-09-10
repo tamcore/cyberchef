@@ -1,4 +1,6 @@
-FROM --platform=$BUILDPLATFORM node:16.20.2 as build
+FROM --platform=$BUILDPLATFORM node:18-alpine AS build
+
+RUN apk add --no-cache git curl unzip
 
 # renovate: datasource=github-releases depName=gchq/CyberChef
 ARG CYBERCHEF_VERSION="v10.19.4"
