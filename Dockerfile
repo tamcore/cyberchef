@@ -7,6 +7,8 @@ ARG CYBERCHEF_VERSION="v10.19.4"
 
 ARG BUILD_TYPE="release" # or use git for build from source
 
+ARG BUILD_COMMIT=""
+
 USER node
 
 WORKDIR /app
@@ -15,6 +17,7 @@ RUN \
     set -xe; \
     if [ "x${BUILD_TYPE}" = "xgit" ]; then \
         git clone -b "$CYBERCHEF_VERSION" --depth=1 https://github.com/gchq/CyberChef.git .; \
+        if [ "x${BUILD_COMMIT}" != "x" ]; then git checkout "$BUILD_COMMIT"; fi; \
         npm install; \
         NODE_OPTIONS="--max-old-space-size=2048" npx grunt prod; \
     else \
