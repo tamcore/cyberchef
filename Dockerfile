@@ -28,7 +28,7 @@ RUN \
         mv -fv build/prod/CyberChef_${CYBERCHEF_VERSION}.html build/prod/index.html; \
     fi
 
-FROM nginxinc/nginx-unprivileged:1.29.4-alpine-slim
+FROM nginxinc/nginx-unprivileged:1.29.5-alpine-slim
 
 COPY --from=build --chown=0:0 /app/build/prod /usr/share/nginx/html
 
