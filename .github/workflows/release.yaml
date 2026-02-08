@@ -11,6 +11,8 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  CHART_DIR: charts/cyberchef
+  CHART_REPOSITORY: ghcr.io/${{ github.repository_owner }}/charts
 
 jobs:
   build-and-push:
@@ -108,6 +110,7 @@ jobs:
 
     permissions:
       contents: write
+      packages: write
 
     steps:
       - name: Checkout
@@ -129,3 +132,21 @@ jobs:
           charts_dir: charts
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Login to registry
+        run: |
+          echo '${{ secrets.GITHUB_TOKEN }}' | \
+            helm registry login \
+              -u '${{ github.actor }}' \
+              --password-stdin \
+              ghcr.io
+
+      - name: Package chart
+        run: |
+          echo PACKAGE=$(helm package ${{ env.CHART_DIR }} -u | cut -d " " -f 8) >> ${GITHUB_ENV}
+
+      - name: Push chart
+        run: |
+          helm push \
+            ${{ env.PACKAGE }} \
+            oci://${{ env.CHART_REPOSITORY }}
