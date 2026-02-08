@@ -1,4 +1,4 @@
-name: Container Build and Push
+name: Release
 
 on:
   push:
@@ -100,3 +100,32 @@ jobs:
             BUILD_TYPE=${{ env.TAG == 'nightly' && 'git' || 'release' }}
             CYBERCHEF_VERSION=${{ env.TAG == 'nightly' && 'master' || env.TAG }}
             BUILD_COMMIT=${{ env.BUILD_COMMIT || '' }}
+
+  release-chart:
+    needs: build-and-push
+    if: github.event_name != 'schedule' && github.event_name != 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.7.0
+        with:
+          charts_dir: charts
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
