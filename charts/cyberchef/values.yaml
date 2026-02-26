@@ -56,6 +56,17 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+
+# Gateway API HTTPRoute — alternative to Ingress for clusters running nginx-gateway-fabric
+# or another Gateway API implementation.
+httpRoute:
+  enabled: false
+  parentRefs: []
+  #  - name: nginx-gateway
+  #    namespace: nginx-gateway
+  hostnames: []
+  #  - cyberchef.example.com
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
