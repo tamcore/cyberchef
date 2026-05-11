@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:18-alpine AS build
+FROM --platform=$BUILDPLATFORM node:24-alpine AS build
 
 RUN apk add --no-cache git curl unzip
 
