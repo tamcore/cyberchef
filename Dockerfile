@@ -3,7 +3,7 @@ FROM --platform=$BUILDPLATFORM node:24-alpine AS build
 RUN apk add --no-cache git curl unzip
 
 # renovate: datasource=github-releases depName=gchq/CyberChef
-ARG CYBERCHEF_VERSION="v11.2.0"
+ARG CYBERCHEF_VERSION="v11.3.0"
 
 ARG BUILD_TYPE="release" # or use git for build from source
 
